@@ -13,7 +13,7 @@ namespace DG.ChineseCalendar.Tests
         [Fact()]
         public void GetChineseCalendarTest()
         {
-            var c = ChineseCalendar.GetChineseCalendar(new DateTime(2017, 10, 1));
+            var c = CNCalendarHelper.GetChineseCalendar(new DateTime(2017, 10, 1));
             StringBuilder dayInfo = new StringBuilder();
             dayInfo.Append("阳历：" + c.DateString + "\r\n");
             dayInfo.Append("农历：" + c.ChineseDateString + "\r\n");

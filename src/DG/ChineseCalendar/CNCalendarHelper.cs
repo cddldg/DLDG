@@ -9,7 +9,7 @@ namespace DG.ChineseCalendar
     /// <summary>
     /// 中国日历
     /// </summary>
-    public static class ChineseCalendar
+    public static class CNCalendarHelper
     {
         /// <summary>
         /// 用一个公历来初使化

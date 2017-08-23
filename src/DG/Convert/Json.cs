@@ -1,16 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DG.Json
+namespace DG.Convert
 {
     /// <summary>
     /// json转换
     /// </summary>
-    public static class Convert
+    public static class Json
     {
         /// <summary>
         /// 实体转json字符串

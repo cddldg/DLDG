@@ -1,11 +1,11 @@
 ﻿using Xunit;
-using DG.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DG.Tests.Model;
+using DG.Convert;
 
 namespace DG.Json.Tests
 {
