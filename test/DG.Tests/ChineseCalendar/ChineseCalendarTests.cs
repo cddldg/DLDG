@@ -35,7 +35,7 @@ namespace DG.ChineseCalendar.Tests
         [Fact()]
         public void ChineseCalHelperTest()
         {
-            var c=new ChineseCalHelper(1982, 9, 12, false);
+            var c=new ChineseCalendarInfo(1982, 9, 12, false);
             StringBuilder dayInfo = new StringBuilder();
             dayInfo.Append("阳历：" + c.DateString + "\r\n");
             dayInfo.Append("农历：" + c.ChineseDateString + "\r\n");

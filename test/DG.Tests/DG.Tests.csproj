@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChineseCalendar\ChineseCalendarTests.cs" />
+    <Compile Include="Json\ConvertTests.cs" />
+    <Compile Include="Model\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

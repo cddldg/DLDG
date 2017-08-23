@@ -337,7 +337,7 @@ namespace DG.ChineseCalendar
             temp = 0;
 
             //计算两天的基本差距
-            TimeSpan ts = _date - ChineseCalHelper.MinDay;
+            TimeSpan ts = _date - ChineseCalendarInfo.MinDay;
             offset = ts.Days;
 
             for (i = MinYear; i <= MaxYear; i++)
