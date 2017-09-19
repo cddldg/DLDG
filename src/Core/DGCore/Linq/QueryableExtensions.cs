@@ -11,43 +11,67 @@ namespace DGCore.Linq
     public static class QueryExtensions
     {
         #region 分页查询
+
         /// <summary>
-        /// 分页 Skip(...).Take(...) 
+        /// 分页
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="query"></param>
-        /// <param name="skipCount">pageSize*pageNo</param>
+        /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
-        /// <returns>hym create：2017-08-22</returns>
-        public static IQueryable<T> PageBy<T>(this IQueryable<T> query, int skipCount, int pageSize)
+        /// <returns></returns>
+        public static IQueryable<T> PageBy<T>(this IQueryable<T> query, int pageIndex, int pageSize)
         {
-            if (query == null)
-            {
-                throw new ArgumentNullException("分页查询");
-            }
-
-            return query.Skip(skipCount).Take(pageSize);
+            return query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>
-        /// 分页 Skip(...).Take(...) 
+        /// 分页排序
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="query"></param>
-        /// <param name="skipCount">pageSize*pageNo</param>
+        /// <param name="count">数据总行数</param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderBy">orderBy字段 Lambda表达式</param>
+        /// <param name="asc">true asc;false desc</param>
+        /// <returns></returns>
+        public static IQueryable<T> PageBy<T>(this IQueryable<T> query, out int count, int pageIndex, int pageSize, Expression<Func<T, object>> orderBy, bool asc = true)
+        {
+            count = query.Count();
+            return asc ? query.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize) : query.OrderByDescending(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static IEnumerable<T> PageBy<T>(this IEnumerable<T> query, int skipCount, int pageSize)
+        public static IEnumerable<T> PageBy<T>(this IEnumerable<T> query, int pageIndex, int pageSize)
         {
-            if (query == null)
-            {
-                throw new ArgumentNullException("分页查询");
-            }
+            return query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
 
-            return query.Skip(skipCount).Take(pageSize);
-        } 
+        /// <summary>
+        /// 分页排序
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="count">数据总行数</param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderBy">orderBy字段 Lambda表达式</param>
+        /// <param name="asc">true asc;false desc</param>
+        /// <returns></returns>
+        public static IEnumerable<T> PageBy<T>(this IEnumerable<T> query, out int count, int pageIndex, int pageSize, Func<T, object> orderBy, bool asc = true)
+        {
+            count = query.Count();
+            return asc ? query.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize) : query.OrderByDescending(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
         #endregion
-        
+
         #region WhereIf
         /// <summary>
         /// 扩展条件查询语句
